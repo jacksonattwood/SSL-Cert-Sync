@@ -1,0 +1,9 @@
+{
+    "port": 7080,
+    
+    "authKey": "auth1",
+
+    "autherror": "ERROR: Invalid Authentication Key",
+
+    "certroot": "/Users"
+}
