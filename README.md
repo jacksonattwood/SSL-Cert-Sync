@@ -4,7 +4,8 @@
 # Installation
 1. Clone into the repo: `git clone https://github.com/jacksonattwood/SSL-Cert-Sync.git && cd SSL-Cert-Sync`
 2. Run the following command on your CLI: `npm install`
-3. Run the following command on your CLI to start the NodeJS Server: `node server`
+3. Copy "config.json.example" to "config.json" and edit to your needs (DO NOT SHARE YOUR AUTH KEY WITH ANYONE)
+4. Run the following command on your CLI to start the NodeJS Server: `node server.js`
 
 
 # Testing
