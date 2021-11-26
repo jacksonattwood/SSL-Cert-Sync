@@ -8,3 +8,5 @@ client/config.py
 access.log
 client.zip
 .DS_Store
+client/results/privkey.pem
+client/results/cert.pem

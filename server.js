@@ -41,10 +41,17 @@ router.get("/", (req,res)=>{
         if (conf.client_download_enabled == 1){
             express.static(path.join(__dirname, '/' + 'client.zip'))
             res.sendFile(__dirname + '/' + 'client.zip')
+            if (conf.logging == 1){
+            logtext = timestamp + ": client.zip requested by " + req.ip
+            console.log(logtext)
+            fs.appendFile('access.log', `\n${logtext}`, (err) => {
+                if (err) throw err;
+              }); 
+            }
         } else {
         res.send(conf.autherror)
         if (conf.logging == 1){
-            logtext = timestamp + ": !FAILED AUTH! by" + req.ip + conf.certroot + req.headers['file'] + " requested by " + req.ip
+            logtext = timestamp + ": !FAILED AUTH! by" + req.ip
             console.log(logtext)
             fs.appendFile('access.log', `\n${logtext}`, (err) => {
                 if (err) throw err;
