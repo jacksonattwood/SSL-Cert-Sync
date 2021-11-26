@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "concat": "^1.0.3",
     "express": "^4.17.1",
-    "expresss": "^0.0.0"
+    "expresss": "^0.0.0",
+    "join": "^3.0.0",
+    "zip-a-folder": "^1.1.0"
   }
 }

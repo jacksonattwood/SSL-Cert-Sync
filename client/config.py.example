@@ -1,0 +1,18 @@
+# CONFIGURATION FILES (Make sure you change these variables before running)
+
+# Address and port of you Node.JS server
+SERVER = ('192.168.0.10:7080')
+
+# Authorisation key that you set on Node.JS server
+AUTHKEY = "replaceme"
+
+# Location to save downloaded files
+SAVE_PATH = "/path/to/save/directory"
+# or on Windows:
+# SAVE_PATH = "C:/Users/example/SSL-Certs/"
+
+# List of files to grab (make sure you enter the directory relative to "certroot" in Node.JS server config)
+files = [
+    "/ssl.crt/lost.crt",
+    "/ssl.key/lost.key"
+]

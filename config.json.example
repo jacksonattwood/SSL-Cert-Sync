@@ -3,6 +3,10 @@
     
     "authKey": "replaceme",
 
+    "logging": 1,
+
+    "client_download_enabled": 1,
+
     "autherror": "ERROR: Invalid Authentication Key",
 
     "certroot": "/path/to/ssl/root"

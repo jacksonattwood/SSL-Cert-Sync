@@ -1,3 +1,10 @@
 
 config.json
 /node_modules
+server-test.js
+client/__pycache__/client.cpython-39.pyc
+client/__pycache__/config.cpython-39.pyc
+client/config.py
+access.log
+client.zip
+.DS_Store
