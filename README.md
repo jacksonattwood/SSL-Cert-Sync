@@ -26,17 +26,26 @@
 
 # Configuration options
 ## Server
-- `port`: The port you would like the server to listen on (default: 7080)
-- `authkey`: The authorisation key you would like to use for your client script
+- `port`: The port you would like the server to listen on (default: `7080`)
+- `https`: Enable or disable HTTPS + SSL authentication (`true` or `false`, default enabled)
+    - `certificate`: Path to SSL certificate (cert.pem, cert.crt etc.)
+    - `privateKey`: Path to SSL private key (priv.key etc.)
+- `authKey`: The authorisation key you would like to use for your client script
+- `autherror`: The message to return when a request fails authentication
 - `logging`: Whether you would like to log access requests to console and to an `access.log` file (1: YES, 2: NO)
 - `client_download_enabled`: whether you would like to be able to get the zip from the server when not using an access key (1: YES, 2: NO)
-- `autherror`: The message to return when a request fails authentication
 - `certroot`: The directory above all the files  you are trying to download
 
 # Testing
-In your CLI run `curl -X GET http://syncserver.jcksn.rip:7080 -H "auth-key: yourauthkey" -H "file: /test.crt"` and make sure to replace server address, port, auth-key and file location to one that exists on your server
+In your CLI run: 
+## HTTP
+- `curl -X GET http://127.0.0.1:7080 -H "auth-key: yourauthkey" -H "file: /test.crt"` 
+## HTTPS
+- `curl -k -X GET https://127.0.0.1:7080 -H "auth-key: yourauthkey" -H "file: /test.crt"`
+
+and make sure to replace server address, port, auth-key and file location to one that exists on your server
 
 # Things to do:
-- [ ] Add HTTPS support (will be optional, but preferred)
+- [x] Add HTTPS support (will be optional, but preferred)
 - [x] Add optional access logging
 - [ ] Automatically set server address in client configuration

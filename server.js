@@ -1,24 +1,24 @@
 const conf = require('./config.json');
 const express = require("express");
+const https = require('https');
 const path = require('path');
-const router = express()
 const concat = require('concat')
 const fs = require('fs');
+const router = express()
+var servertype = null
 const zip_a_folder = require('zip-a-folder');
 zip_a_folder.zip('./client', 'client.zip');
+const time = require('./time.js');
 
-// TIMESTAMP DEPENDENCIES
-let date_ob = new Date();
-let date = ("0" + date_ob.getDate()).slice(-2);
-let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-let year = date_ob.getFullYear();
-let hours = date_ob.getHours();
-let minutes = date_ob.getMinutes();
-let seconds = date_ob.getSeconds();
-const timestamp = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds
+// HTTPS
+var credentials = {
+    key: fs.readFileSync(conf.privatekey), 
+    cert: fs.readFileSync(conf.certificate)
+};
+
 
 if (conf.logging == 1){
-    loginittext = "Script started at " + timestamp
+    loginittext = "Script started at " + time.getTimestamp()
     fs.appendFile('access.log', `\n${loginittext}`, (err) => {
         if (err) throw err;
       }); 
@@ -29,7 +29,7 @@ router.get("/", (req,res)=>{
     if (conf.authKey == req.headers['auth-key']){
         res.sendFile(conf.certroot.concat(req.headers['file']));
         if (conf.logging == 1){
-            logtext = timestamp + ": " + conf.certroot + req.headers['file'] + " requested by " + req.ip
+            logtext = time.getTimestamp() + ": " + conf.certroot + req.headers['file'] + " requested by " + req.ip
             console.log(logtext)
             fs.appendFile('access.log', `\n${logtext}`, (err) => {
                 if (err) throw err;
@@ -42,7 +42,7 @@ router.get("/", (req,res)=>{
             express.static(path.join(__dirname, '/' + 'client.zip'))
             res.sendFile(__dirname + '/' + 'client.zip')
             if (conf.logging == 1){
-            logtext = timestamp + ": client.zip requested by " + req.ip
+            logtext = time.getTimestamp() + ": client.zip requested by " + req.ip
             console.log(logtext)
             fs.appendFile('access.log', `\n${logtext}`, (err) => {
                 if (err) throw err;
@@ -51,7 +51,7 @@ router.get("/", (req,res)=>{
         } else {
         res.send(conf.autherror)
         if (conf.logging == 1){
-            logtext = timestamp + ": !FAILED AUTH! by" + req.ip
+            logtext = time.getTimestamp() + ": !FAILED AUTH! by" + req.ip
             console.log(logtext)
             fs.appendFile('access.log', `\n${logtext}`, (err) => {
                 if (err) throw err;
@@ -61,6 +61,14 @@ router.get("/", (req,res)=>{
     }
 })
 
-router.listen(conf.port, () => {
-    console.log(`Example app listening at http://localhost:${conf.port}`)
-  })
+if (conf.https == "true"){
+    servertype = "https"
+    https.createServer(credentials, router).listen(conf.port, () => {
+        console.log(time.getTimestamp() + `: SSL Sync (Master) listening at ` + servertype + `://0.0.0.0` + `:${conf.port}`)
+    })
+} else if (conf.https = "false"){
+    servertype = "http"
+    router.listen(conf.port, () => {
+        console.log(time.getTimestamp() + `: SSL Sync (Master) listening at ` + servertype + `://0.0.0.0` + `:${conf.port}`)
+      })
+}
