@@ -1,4 +1,6 @@
-# SSL_CERT_SYNC
+# filesync
+ 
+ 
  A script to sync multiple servers with a central listening server, that provides them all with the same SSL certificate (for ease of use)
  This can be used to sync any files you want, just set the folders and filenames to whatever you'd prefer
  Since this just uses some basic GET requests, you can easily integrate with any 
@@ -6,7 +8,7 @@
 # Installation
 
 ## Server
-1. Clone into the repo: `git clone https://github.com/jacksonattwood/SSL-Cert-Sync.git && cd SSL-Cert-Sync`
+1. Clone into the repo: `git clone https://github.com/jacksonattwood/filesync.git && cd filesync`
 2. Run the following command on your CLI to install all the required modules: `npm install`
 3. Copy "config.json.example" to "config.json" and edit to your needs (DO NOT SHARE YOUR AUTH KEY WITH ANYONE)
 4. Run the following command on your CLI to start the NodeJS Server: `node server.js`
@@ -29,8 +31,8 @@
 - `port`: The port you would like the server to listen on (default: `7080`)
 - `https`: Enable or disable HTTPS + SSL authentication (`true` or `false`, default enabled)
     - `certificate`: Path to SSL certificate (cert.pem, cert.crt etc.)
-    - `privateKey`: Path to SSL private key (priv.key etc.)
-- `authKey`: The authorisation key you would like to use for your client script
+    - `privatekey`: Path to SSL private key (priv.key etc.)
+- `authkey`: The authorisation key you would like to use for your client script
 - `autherror`: The message to return when a request fails authentication
 - `logging`: Whether you would like to log access requests to console and to an `access.log` file (1: YES, 2: NO)
 - `client_download_enabled`: whether you would like to be able to get the zip from the server when not using an access key (1: YES, 2: NO)

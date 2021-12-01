@@ -1,0 +1,13 @@
+[Unit]
+Description=filesync - it syncs files
+Documentation=https://github.com/jacksonattwood/filesync
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+ExecStart=/usr/bin/node /home/ubuntu/hello_env.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
