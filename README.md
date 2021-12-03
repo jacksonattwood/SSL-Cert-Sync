@@ -1,9 +1,12 @@
 # filesync
  
+ A script to sync multiple servers with a central listening server, that provides them all with authenticated access to folders on the central server. 
+
+ This script was originally designed to sync SSL Certificates with multiple servers, but now has a much more generic purpose. 
  
- A script to sync multiple servers with a central listening server, that provides them all with the same SSL certificate (for ease of use)
+ <!-- A script to sync multiple servers with a central listening server, that provides them all with the same SSL certificate (for ease of use)
  This can be used to sync any files you want, just set the folders and filenames to whatever you'd prefer
- Since this just uses some basic GET requests, you can easily integrate with any 
+ Since this just uses some basic GET requests, you can easily integrate with any  -->
 
 # Installation
 
@@ -23,6 +26,8 @@
         - Use cUrl or Wget to download the hosted zip: `curl -X GET http://server:port -o client.zip`
         - Extract the folder however you wish
         - `cd` into the folder
+
+    - You can also just download from GitHub if you want
 2. Copy `config.py.example` to `config.py` and make your desired changes
 3. Run `client.py`
 
