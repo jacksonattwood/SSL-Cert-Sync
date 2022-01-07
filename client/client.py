@@ -2,7 +2,7 @@ import requests
 import os
 import config
 
-SERVER = config.SERVER
+SERVER = "http://" + config.SERVER
 AUTHKEY = config.AUTHKEY
 SAVE_PATH = config.SAVE_PATH
 files = config.files

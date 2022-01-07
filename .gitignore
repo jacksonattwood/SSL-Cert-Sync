@@ -10,3 +10,4 @@ client.zip
 .DS_Store
 client/results/privkey.pem
 client/results/cert.pem
+client/config.py.back
