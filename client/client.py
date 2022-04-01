@@ -1,21 +1,30 @@
-import requests
-import os
 import config
+import requests
 
 SERVER = "http://" + config.SERVER
 AUTHKEY = config.AUTHKEY
 SAVE_PATH = config.SAVE_PATH
-files = config.files
+FILES = config.files
 
-def filenameshort(i):
-    file_name = i.split('/')[2]
-    return file_name
+def shorten_filename(i) -> str:
+    
+    """ Returns formatted string """
+    
+    try:
+        return i.split('/')[2];
+    except TypeError as e:
+        print(str(e)+'\n -> TypeError occured on attempted execute of shorten_frame function')
+        return str();
 
-for i in files: 
-    file_name = filenameshort(i)
-    print("Downloading '" + SERVER + i + "' to " + SAVE_PATH + "/" + file_name)
-    headers = {"auth-key": AUTHKEY,"file": i }
-    response = requests.get(SERVER, headers=headers)
-    savelocation = SAVE_PATH + "/" + file_name
-    open(f"{savelocation}", "w").write(response.text)
+for i in FILES:
+    print("Downloading {} to {}/{}".format(SERVER + i,SAVE_PATH,filenameshort(i)))
+    with open(str(SAVE_PATH + "/" + file_name), "w") as file: 
+        file.write(
+            requests.get(
+                SERVER, headers={
+                "auth-key": AUTHKEY,
+                "file": i 
+                }).text)
+        
+
 
